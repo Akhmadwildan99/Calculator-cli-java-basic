@@ -2,9 +2,10 @@ public class Calculator {
 
     public static  Integer firstNumber;
     public static Integer[] result = new Integer[10];
+    public static java.util.Scanner scanner = new java.util.Scanner(System.in);
 
     public static void main(String[] args) {
-        testAllCalc();
+        testViewShowResultCalc();
     }
 
     /**
@@ -182,9 +183,134 @@ public class Calculator {
         calcMin(10);
         calcTime(2);
         calcFor(2);
+        calcAdd(20);
+        calcMin(10);
+        calcTime(2);
+        calcFor(2);
 
-        System.out.println(firstNumber);
+
         showResult();
+        System.out.println(" ");
+        System.out.println(firstNumber);
+    }
+
+    /**
+     * Input angka dan string
+     */
+    public static String input(String info){
+        System.out.print(info);
+        var data = scanner.nextLine();
+        return data;
+    }
+
+    public static void testInput(){
+        var result = input("nama: ");
+        System.out.println(result);
+
+        result = input("angka: ");
+        firstNumber = Integer.valueOf(result);
+        System.out.println(firstNumber);
+    }
+
+    /**
+     * menamilkan hasil kalkulasi
+     */
+    public static void viewShowResultCalc(){
+        while (true){
+            System.out.println("CALCULATOR:..");
+            if (firstNumber == null){
+                var first = input("first number: ");
+                firstNumber = Integer.valueOf(first);
+                System.out.println("+");
+                System.out.println("-");
+                System.out.println("*");
+                System.out.println("/");
+                System.out.println("c (unutuk cancel)");
+                var oprator = input("operator: ");
+                if (oprator.equals("+")){
+                    viewAddCalc();
+                } else if(oprator.equals("-")){
+                    viewMinCalc();
+                } else if (oprator.equals("*")){
+                    viewTimeCalc();
+                } else if(oprator.equals("/")){
+                    viewForCalc();
+                } else if(oprator.equals("c")){
+                    break;
+                } else {
+                    System.out.println("Perintah tidak dimengerti!!!");
+                }
+                System.out.println("Tracking result:");
+                showResult();
+                System.out.println("");
+                System.out.println("Result: " + firstNumber);
+
+            } else {
+                System.out.println("+");
+                System.out.println("-");
+                System.out.println("*");
+                System.out.println("/");
+                System.out.println("c (unutuk cancel)");
+                var oprator = input("operator: ");
+                if (oprator.equals("+")){
+                    viewAddCalc();
+                } else if(oprator.equals("-")){
+                    viewMinCalc();
+                } else if (oprator.equals("*")){
+                    viewTimeCalc();
+                } else if(oprator.equals("/")){
+                    viewForCalc();
+                } else if(oprator.equals("c")){
+                    break;
+                } else {
+                    System.out.println("Perintah tidak dimengerti!!!");
+                }
+
+                System.out.println("Tracking result:");
+                showResult();
+                System.out.println("");
+                System.out.println("Result: " + firstNumber);
+            }
+        }
+
+
+    }
+
+    public static void testViewShowResultCalc(){
+//        firstNumber = 45;
+        viewShowResultCalc();
+    }
+
+    /**
+     * menampilkan operasi tambah
+     */
+    public  static void viewAddCalc(){
+        var secondNum = input("second number: ");
+        calcAdd(Integer.valueOf(secondNum));
+    }
+
+    /**
+     * menampilkan operasi kurang
+     */
+    public static void viewMinCalc(){
+        var secondNum = input("second number: ");
+        calcMin(Integer.valueOf(secondNum));
+    }
+
+    /**
+     * menampilkan operasi kali
+     */
+    public static void viewTimeCalc(){
+        var secondNum = input("second number: ");
+        calcTime(Integer.valueOf(secondNum));
+    }
+
+    /**
+     * menampilkan operasi bagi
+     */
+    public static void viewForCalc(){
+        var secondNum = input("second number: ");
+        calcFor(Integer.valueOf(secondNum));
     }
 
 }
